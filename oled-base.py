@@ -1,17 +1,9 @@
 from machine import I2C, Pin
 from time import sleep
-OLED = 0                                # 1 : 1.3 pouces, 0 : 0.96 pouces
-
-# choix de la bibliotheque en fonction du type d'ecran OLED
-if OLED == 1 :                             
-    from ssd1306 import SSD1306_I2C     # module pour commander le OLED
-    i2c = I2C(-1, Pin(22), Pin(21))     # pin SCK et SDA du OLED
-    display = SSD1306_I2C(128, 64, i2c) # declaration taille ecran, pins
-else :
-    from sh1106 import SH1106_I2C
-    i2c = I2C(scl=Pin(22), sda=Pin(21), freq=400000)
-    display = SH1106_I2C(128, 64, i2c, Pin(16), 0x3c)
-    display.sleep(False)
+                         
+from ssd1306 import SSD1306_I2C     # module pour commander le OLED
+i2c = I2C(-1, Pin(22), Pin(21))     # pin SCK et SDA du OLED
+display = SSD1306_I2C(128, 64, i2c) # declaration taille ecran, pins
 
 bp = Pin(25, Pin.IN)                   # poussoir sur pin 25 pour passer
 
